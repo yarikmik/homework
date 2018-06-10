@@ -1,4 +1,5 @@
 device=input('Enter device name:')
+name=input('Enter parametr name:')
 
 london_co = {
     'r1' : {
@@ -26,4 +27,4 @@ london_co = {
     }
 }
 
-print(london_co[device])
+print(london_co[device][name])
