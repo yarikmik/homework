@@ -40,16 +40,19 @@ mask_bin_0=mask_bin_str[:mask]+'0'*(32-mask)
 #Out[9]: '11111111111111111111111100000000'
 
 # преобразование адреса в бинарный вид
-network=
-
+network_bin='{:08b}{:08b}{:08b}{:08b}'.format(int(network[0]),int(network[1]),int(network[2]),int(network[3]))
+#отсечение адресов хостов
+network_0=network_bin[:mask]+'0'*(32-mask)
 
 
 #print('\n' )
 print('\n' )
 print('\n' + '-'* 35)
 #print(network)
-
+''' вывод адресов
 print(network_template.format(int(network[0]),int(network[1]),int(network[2]),int(network[3])))
+'''
+print(network_template.format(int(network_0[0:8],2),int(network_0[8:16],2),int(network_0[16:24],2),int(network_0[24:32],2)))
 
 print(mask_template.format(int(mask_bin_0[0:8],2),int(mask_bin_0[8:16],2),int(mask_bin_0[16:24],2),int(mask_bin_0[24:32],2), mask=mask))
 
