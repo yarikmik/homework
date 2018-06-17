@@ -30,9 +30,10 @@ london_co = {
 name_template='''
 Enter parametr name {}: '''
 
-london_str=tuple(london_co[device].keys())
 
-name=input(name_template.format(london_str))
+london_str=london_co[device].keys()
+
+name=input(name_template.format(tuple(london_str)))
 
 print('\n' )
 print('\n' + '-'* 35)
