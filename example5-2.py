@@ -1,5 +1,5 @@
 device=input('Enter device name:')
-
+device=device.lower()
 
 london_co = {
     'r1' : {
@@ -34,6 +34,7 @@ Enter parametr name {}: '''
 #london_str=london_co[device].keys()
 
 name=input(name_template.format(tuple(london_co[device].keys()))) #пихаем в форму список ключей выбранного списка
+name=name.lower()
 #print('\n' )
 print('\n' + '-'* 35)
 
