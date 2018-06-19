@@ -31,11 +31,10 @@ name_template='''
 Enter parametr name {}: '''
 
 
-london_str=london_co[device].keys()
+#london_str=london_co[device].keys()
 
-name=input(name_template.format(tuple(london_str)))
-
-print('\n' )
+name=input(name_template.format(tuple(london_co[device].keys()))) #пихаем в форму список ключей выбранного списка
+#print('\n' )
 print('\n' + '-'* 35)
 
-print(london_co[device][name])
+print(london_co[device].get(name, 'Такого параметра нет'))
