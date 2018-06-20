@@ -11,8 +11,21 @@ trunk_template = ['switchport trunk encapsulation dot1q',
 
 
 
-mode=input('Enter interface mode (acces/trunk):')
-nember=input('Enter interface type and number:')
+template_all  = [access_template, trunk_template]
+
+mode=input('Enter interface mode (access/trunk):')
+interface=input('Enter interface type and number:')
+
+mode=mode.startswith('trunk') # проверка на совпадение, переменной присваивается true или false
+
+
 vlan=input('Enter vlan(s):')
 
-print(access_template(vlan))
+
+print('\n' + '-'* 35)
+
+print('interface {}'. format(interface))
+print('\n')
+print('\n'.join(template_all[int(mode)]).format(vlan)) #true или false переводим в численное значение 
+print('\n')
+#print('\n'.join(trunk_template).format(vlan))
