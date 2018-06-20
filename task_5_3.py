@@ -11,6 +11,10 @@ trunk_template = ['switchport trunk encapsulation dot1q',
 
 
 
+vlan_template=['Enter VLAN number:']
+vlans_template=['Enter allowed VLANs:']
+template_vlan = [vlan_template,vlans_template] #список вариантов для отображения приглашения для ввода вланов
+
 template_all  = [access_template, trunk_template]
 
 mode=input('Enter interface mode (access/trunk):')
@@ -18,8 +22,8 @@ interface=input('Enter interface type and number:')
 
 mode=mode.startswith('trunk') # проверка на совпадение, переменной присваивается true или false
 
-
-vlan=input('Enter vlan(s):')
+vlan=input('\n'.join(template_vlan[int(mode)])) #true или false переводим в численное значение, от чего меняется текст приглашения
+#vlan=input('Enter vlan(s):')
 
 
 print('\n' + '-'* 35)
