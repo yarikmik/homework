@@ -5,7 +5,7 @@ word_list = ['python', 'ruby', 'perl', 'ruby', 'perl', 'python', 'ruby', 'perl']
 num_str=tuple(num_list)
 num=input('Введите элемен, что бы узнать индекс последнего {}:'.format(num_str))
 
-sum_index=len(num_list) # проверка номера ниндекса последнего элемента (определение количества элементов в списке)
+sum_index=len(num_list) # определение количества элементов в списке
 num_list.reverse() # перевернуть лист
 index=sum_index-num_list.index(int(num))-1 # вычисление номера индекса последнего
 
