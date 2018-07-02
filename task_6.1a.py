@@ -24,21 +24,21 @@ print_template = '''
 Адрес: {}
 Принадлежит сети - {}
 '''
+network_correct = True
 
-for i in network:
-	if int(i) >= 0 and int(i) <=255:
-		print('Correct IPv4 address')
-else:
-		print('Incorrect IPv4 address')
+while not network_correct:
+	for i in network:
+		if int(i) < 0 or int(i) > 255:			# Проверка на корректность введенного IP
+			print('Incorrect IPv4 address')
+			break
 
-
-if oct1==oct2==oct3==oct4==255:
-	print (print_template.format('.'.join(network), "local broadcast"))
-elif oct1 >= 1 and oct1 <= 223:
-	print (print_template.format('.'.join(network), "unicast"))
-elif oct1 >= 224 and oct1 <= 239:
-	print (print_template.format('.'.join(network), "multicast"))
-elif oct1==oct2==oct3==oct4==0:
-	print (print_template.format('.'.join(network), "unassigned"))
-else:
-	print (print_template.format('.'.join(network), "unused"))
+	if oct1==oct2==oct3==oct4==255:
+		print (print_template.format('.'.join(network), "local broadcast"))
+	elif oct1 >= 1 and oct1 <= 223:
+		print (print_template.format('.'.join(network), "unicast"))
+	elif oct1 >= 224 and oct1 <= 239:
+		print (print_template.format('.'.join(network), "multicast"))
+	elif oct1==oct2==oct3==oct4==0:
+		print (print_template.format('.'.join(network), "unassigned"))
+	else:
+		print (print_template.format('.'.join(network), "unused"))
