@@ -4,10 +4,10 @@ username = input('Введите имя пользователя:')
 password = input('Введите пароль:')
 
 
-# password_correct = False
+password_correct = False
 
 
-while True:
+while not password_correct:
 	
 	if len(password) < 8:
 		print('Пароль слишком короткий\n')
@@ -17,6 +17,8 @@ while True:
 		
 	else:
 		print('Пароль пользователя {} установлен'.format(username))
-		# завершает цикл while
-		break
+
+		password_correct= True
+		continue
+		
 	password=input('Введите пароль еще раз:')
