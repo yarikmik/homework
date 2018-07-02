@@ -19,10 +19,18 @@ oct3 = int(network[2])
 oct4 = int(network[3])
 
 
+
 print_template = ''' 
 Адрес: {}
 Принадлежит сети - {}
 '''
+
+for i in network:
+	if int(i) >= 0 and int(i) <=255:
+		print('Correct IPv4 address')
+else:
+		print('Incorrect IPv4 address')
+
 
 if oct1==oct2==oct3==oct4==255:
 	print (print_template.format('.'.join(network), "local broadcast"))
@@ -34,5 +42,3 @@ elif oct1==oct2==oct3==oct4==0:
 	print (print_template.format('.'.join(network), "unassigned"))
 else:
 	print (print_template.format('.'.join(network), "unused"))
-
-
