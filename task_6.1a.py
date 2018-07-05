@@ -14,10 +14,27 @@ D: 224-239
 network = input('Введите IP адрес:')
 
 network=network.strip(',').split('.')
-oct1 = int(network[0])
-oct2 = int(network[1])
-oct3 = int(network[2])
-oct4 = int(network[3])
+
+
+network_string_correct = False
+
+while not network_string_correct:
+		if len(network)!=4:
+		# Проверка на колличество октетов в IP адресе
+			print('Incorrect IPv4 address (октетов должно быть 4)')
+			network = input('Введите IP адрес еще раз:')
+			network=network.strip(',').split('.')
+		else:
+			try:
+				oct1 = int(network[0])
+				oct2 = int(network[1])
+				oct3 = int(network[2])
+				oct4 = int(network[3])
+				network_string_correct = True
+			except (ValueError):
+				print('Необходимо вводить числовые значения')
+
+
 
 
 
@@ -28,19 +45,9 @@ print_template = '''
 network_correct = False
 
 while not network_correct:
-	if len(network)!=4:
-		# Проверка на колличество октетов в IP адресе
-		print('Incorrect IPv4 address (октетов должно быть 4)')
-		network = input('Введите IP адрес еще раз:')
-		network=network.strip(',').split('.')
-		oct1 = int(network[0])
-		oct2 = int(network[1])
-		oct3 = int(network[2])
-		oct4 = int(network[3])
-
-	elif oct1<0 or oct1>255 or oct2<0 or oct2>255 or oct3<0 or oct3>255 or oct4<0 or oct4>255:			
+	if oct1<0 or oct1>255 or oct2<0 or oct2>255 or oct3<0 or oct3>255 or oct4<0 or oct4>255:			
 	# Проверка на корректность введенного IP
-		print('Incorrect IPv4 address (число в октете превышает 255)')
+		print('Incorrect IPv4 address (число в октете должно быть в диапазоне от 0 до 255)')
 		network = input('Введите IP адрес еще раз:')
 		network=network.strip(',').split('.')
 		oct1 = int(network[0])
