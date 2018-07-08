@@ -14,89 +14,61 @@ D: 224-239
 network = input('Введите IP адрес:')
 networkstr=network
 
-
-
-network_string_correct = False	
-
-while not network_string_correct:
-	if network_string_correct == False:
-		for i in networkstr:
-			if  i == ",":
-			
-				print('Incorrect IPv4 address (адрес не должен содержать запятых)')
-				network = input('Введите IP(,) адрес еще раз:')
-				networkstr=network
-			
-			else:
-				network_string_correct= True
-				
-				
-	
-		
-	else:
-		network_string_correct= True
-	break
-			
 					
 network=network.strip(',').split('.')				
 				
-
-				
-network_len_correct = False				
-				
-while not network_len_correct:
-		
-			
-		if len(network)!=4:
-		# Проверка на колличество октетов в IP адресе
-			print('Incorrect IPv4 address (октетов должно быть 4)')
-			network = input('Введите IP адрес еще раз:')
-			network=network.strip(',').split('.')
-			'''
-			try:
-				oct1 = int(network[0])
-				oct2 = int(network[1])
-				oct3 = int(network[2])
-				oct4 = int(network[3])
-			except (ValueError):
-				print('Необходимо вводить числовые значения')
-			'''
-		else:
-			oct1 = int(network[0])
-			oct2 = int(network[1])
-			oct3 = int(network[2])
-			oct4 = int(network[3])
-			network_len_correct = True
-
-
-
-
 print_template = ''' 
 Адрес: {}
 Принадлежит сети - {}
 '''
-network_correct = False
-
+				
+network_correct = False				
+				
+				
 while not network_correct:
-	if oct1<0 or oct1>255 or oct2<0 or oct2>255 or oct3<0 or oct3>255 or oct4<0 or oct4>255:			
-	# Проверка на корректность введенного IP
-		print('Incorrect IPv4 address (число в октете должно быть в диапазоне от 0 до 255)')
-		network = input('Введите IP адрес еще раз:')
-		network=network.strip(',').split('.')
-		oct1 = int(network[0])
-		oct2 = int(network[1])
-		oct3 = int(network[2])
-		oct4 = int(network[3])
-	
-	else:
-		if oct1==oct2==oct3==oct4==255:
-			print (print_template.format('.'.join(network), "local broadcast"))
-		elif oct1 >= 1 and oct1 <= 223:
-			print (print_template.format('.'.join(network), "unicast"))
-		elif oct1 >= 224 and oct1 <= 239:
-			print (print_template.format('.'.join(network), "multicast"))
-		elif oct1==oct2==oct3==oct4==0:
-			print (print_template.format('.'.join(network), "unassigned"))
+		
+		#Проверка на наличие заяпятых в строке адреса
+		if networkstr.count(',')>0:
+			print('\n Incorrect IPv4 address (Адрес не должен содержать запятых) \n ')
+		
+		#Проверка на наличие букв в записи адреса	
+		elif (''.join(network)).isdigit()==False:
+			print('\n Incorrect IPv4 address (Необходимо вводить числовые значения) \n ')
+		
+		# Проверка на колличество октетов в IP адресе		
+		elif len(network)!=4:
+			print('\n Incorrect IPv4 address (октетов должно быть 4) \n ')
+			
+		# Проверка на корректность введенного IP
+		elif ( int(network[0])<0 or int(network[0])>255 
+			or int(network[1])<0 or int(network[1])>255 
+			or int(network[2])<0 or int(network[2])>255 
+			or int(network[3])<0 or int(network[3])>255):
+			print('\n Incorrect IPv4 address (число в октете должно быть в диапазоне от 0 до 255)\n')
+		
+
 		else:
-			print (print_template.format('.'.join(network), "unused"))
-		network_correct = True
+			network_correct = True
+			
+			oct1 = int(network[0])
+			oct2 = int(network[1])
+			oct3 = int(network[2])
+			oct4 = int(network[3])
+			
+			if oct1==oct2==oct3==oct4==255:
+				print (print_template.format('.'.join(network), "local broadcast"))
+			elif oct1 >= 1 and oct1 <= 223:
+				print (print_template.format('.'.join(network), "unicast"))
+			elif oct1 >= 224 and oct1 <= 239:
+				print (print_template.format('.'.join(network), "multicast"))
+			elif oct1==oct2==oct3==oct4==0:
+				print (print_template.format('.'.join(network), "unassigned"))
+			else:
+				print (print_template.format('.'.join(network), "unused"))
+			network_correct = True
+			break
+		network = input('Введите IP адрес еще раз:')
+		networkstr=network
+		network=network.strip(',').split('.')
+
+
