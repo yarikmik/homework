@@ -12,28 +12,61 @@ D: 224-239
 '''
 
 network = input('Введите IP адрес:')
+networkstr=network
 
-network=network.strip(',').split('.')
 
 
-network_string_correct = False
+network_string_correct = False	
 
 while not network_string_correct:
+	if network_string_correct == False:
+		for i in networkstr:
+			if  i == ",":
+			
+				print('Incorrect IPv4 address (адрес не должен содержать запятых)')
+				network = input('Введите IP(,) адрес еще раз:')
+				networkstr=network
+			
+			else:
+				network_string_correct= True
+				
+				
+	
+		
+	else:
+		network_string_correct= True
+	break
+			
+					
+network=network.strip(',').split('.')				
+				
+
+				
+network_len_correct = False				
+				
+while not network_len_correct:
+		
+			
 		if len(network)!=4:
 		# Проверка на колличество октетов в IP адресе
 			print('Incorrect IPv4 address (октетов должно быть 4)')
 			network = input('Введите IP адрес еще раз:')
 			network=network.strip(',').split('.')
-		else:
+			'''
 			try:
 				oct1 = int(network[0])
 				oct2 = int(network[1])
 				oct3 = int(network[2])
 				oct4 = int(network[3])
-				network_string_correct = True
 			except (ValueError):
 				print('Необходимо вводить числовые значения')
-
+			'''
+		else:
+			oct1 = int(network[0])
+			oct2 = int(network[1])
+			oct3 = int(network[2])
+			oct4 = int(network[3])
+			network_len_correct = True
 
 
 
