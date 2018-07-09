@@ -20,10 +20,8 @@ Print_template = '''
 {}
 '''
 
-mac_cisco = [str(m) for m in mac]
-				#for s in m:
-				#	if s == ':':
-				#		s = '.']
+for m in mac:
+	m.replace(':', '.')
 		
 
 print (Print_template.format(mac, mac_cisco))
