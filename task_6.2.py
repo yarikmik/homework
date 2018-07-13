@@ -20,11 +20,14 @@ Print_template = '''
 {}
 '''
 
+#варинат цикла:
+#for i in range(len(mac)):
+#	mac_cisco.append(mac[i].replace(':', '.'))
+
 for m in mac:
-	m.replace(':', '.')
-		
+	mac_cisco.append(m.replace(':', '.'))
 
 print (Print_template.format(mac, mac_cisco))
 
-
+input()
 

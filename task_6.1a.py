@@ -72,3 +72,4 @@ while True:
 	network=network.strip(',').split('.')
 
 
+input()
