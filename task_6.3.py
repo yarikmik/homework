@@ -29,13 +29,17 @@ for intf, trunkstr in fast_int['trunk'].items():
     print('interface FastEthernet' + intf)
     for command in trunk_template:
         if command.endswith('allowed vlan'):
-            for trunk in trunkstr:
-            	if trunk[0] == 'add':
-            		print(' {}  add {}'.format(command, trunk))
-            	elif trunk[0] == 'only':
-            		print(' {}  {}'.format(command, trunk))
-            	elif trunk[0] == 'del':
-            		print(' {} remove {}'.format(command, trunk))
-        else:
-            print(' {}'.format(command))
+            #for trunk in trunkstr:
+            if trunkstr[0] == 'add':
+            		list1=[str(trunk) for trunk in trunkstr]
+            		print(' {}  add {}'.format(command, ','.join(list1))
+	        	#elif trunkstr[0] == 'only':
+	        	#	list1=[str(trunk) for trunk in trunkstr]
+	        	#	print(' {}  {}'.format(command, ','.join(list1))
+	        	#elif trunkstr[0] == 'del':
+	        	#	list1=[str(trunk) for trunk in trunkstr]
+	        	#	print(' {} remove {}'.format(command, ','.join(list1))
+			
+		else:
+		print(' {}'.format(command))
 		
