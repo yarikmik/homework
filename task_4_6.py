@@ -16,11 +16,18 @@ ospf_route = 'O        10.0.24.0/24 [110/41] via 10.0.13.3, 3d18h, FastEthernet0
 ospf_route = 'O        10.0.24.0/24 [110/41] via 10.0.13.3, 3d18h, FastEthernet0/0'
 d_keys=['Protocol','Prefix','AD/Metric','Next-Hop','Last update', 'Outbound Interface']
 
-r1 = dict.fromkeys(d_keys) #создаем словарь с пустыми занчениями
+#r1 = dict.fromkeys(d_keys) #создаем словарь с пустыми занчениями
 
 ospf_list=ospf_route.strip().split() #Убираем  возможные невидимые сиволы и разделяем(split) по пробелу
 
 ospf_list.remove('via') # Удаляем ненужный элемент via
 ospf_list[2]=ospf_list[2].strip('[]') # Удаляем ненужные символы
-ospf_list[2] = 'OSPF'
-r1 = {r1:i for i in ospf_list}
+ospf_list[0] = 'OSPF'
+ospf_list=list(tuple(ospf_list))
+
+r1 = dict(zip(d_keys, ospf_list))
+
+print_template = '''
+{0:<8} {0:<25}
+'''
+print(print_template.format(r1.keys(), r1.values()))
