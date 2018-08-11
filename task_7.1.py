@@ -24,7 +24,7 @@ Outbound Interface:    FastEthernet0/0
 
 
 d_keys=['Protocol:','Prefix:','AD/Metric:','Next-Hop:','Last update:', 'Outbound Interface:']
-
+ospf_route = open('ospf.txt')
 
 
 ospf_list=ospf_route.strip().split() #Убираем  возможные невидимые сиволы и разделяем(split) по пробелу
