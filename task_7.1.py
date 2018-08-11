@@ -24,21 +24,23 @@ Outbound Interface:    FastEthernet0/0
 
 
 d_keys=['Protocol:','Prefix:','AD/Metric:','Next-Hop:','Last update:', 'Outbound Interface:']
-ospf_route = open('ospf.txt')
 
+ospf_route = open("C:\\Users\\YarikMik\\Documents\GitHub\\homework\\ospf.txt", "r")
 
-ospf_list=ospf_route.strip().split() #Убираем  возможные невидимые сиволы и разделяем(split) по пробелу
+for ospf in ospf_route:
 
-ospf_list.remove('via') # Удаляем ненужный элемент via
-ospf_list[2]=ospf_list[2].strip('[]') # Удаляем ненужные символы
-ospf_list[3]=ospf_list[3].strip(',')
-ospf_list[4]=ospf_list[4].strip(',')
-ospf_list[0] = 'OSPF'
-ospf_list=list(tuple(ospf_list))
+		ospf_list=ospf.strip().split() #Убираем  возможные невидимые сиволы и разделяем(split) по пробелу
 
-r1 = dict(zip(d_keys, ospf_list)) # Складываем два списка в словарь
+		ospf_list.remove('via') # Удаляем ненужный элемент via
+		ospf_list[2]=ospf_list[2].strip('[]') # Удаляем ненужные символы
+		ospf_list[3]=ospf_list[3].strip(',')
+		ospf_list[4]=ospf_list[4].strip(',')
+		ospf_list[0] = 'OSPF'
+		ospf_list=list(tuple(ospf_list))
 
-print('\n')
-print_template = '''{:19}  {}'''
-for key in r1:
-	print(print_template.format(key, r1[key]))
+		r1 = dict(zip(d_keys, ospf_list)) # Складываем два списка в словарь
+
+		print('\n')
+		print_template = '''{:19}  {}'''
+		for key in r1:
+			print(print_template.format(key, r1[key]))
