@@ -12,3 +12,17 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 '''
+
+sw_conf=open('config_sw1.txt', 'r')
+
+sw_conf=sw_conf.read().strip().split('\n')
+
+sw_print=[]
+for s in sw_conf:
+	s=s.strip('! ') # очищаем от символа проблеа и !
+	if s=='':		# пропускаем пустые строки
+		continue
+	else:
+		sw_print.append(s)
+		print(s)
+
