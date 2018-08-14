@@ -25,7 +25,7 @@ Outbound Interface:    FastEthernet0/0
 
 d_keys=['Protocol:','Prefix:','AD/Metric:','Next-Hop:','Last update:', 'Outbound Interface:']
 
-ospf_route = open("C:\\Users\\YarikMik\\Documents\GitHub\\homework\\ospf.txt", "r")
+ospf_route = open("ospf.txt", "r")
 
 for ospf in ospf_route:
 
