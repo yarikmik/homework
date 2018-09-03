@@ -22,6 +22,9 @@ hostname sw1
 !
 interface Ethernet0/0
  duplex auto
+duplex auto
+duplex auto
+duplex auto
 !
 interface Ethernet0/1
  switchport trunk encapsulation dot1q
