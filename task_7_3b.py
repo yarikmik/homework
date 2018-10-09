@@ -26,5 +26,12 @@ for line in Cam_conf: # Модуль удаляет пустые строки
 for line in Cam_conf:
 	line = line.split()
 	if line[0].isdigit():
-		Vlan, Mac, Type, Ports = line
-		print('{:10}{:20}{:30}'.format(Vlan, Mac, Ports))
+		Cam_print.append(line)
+		
+
+Cam_print=sorted(Cam_print) 
+
+for line in Cam_print:
+		
+	Vlan, Mac, Type, Ports = line
+	print('{:10}{:20}{:30}'.format(Vlan, Mac, Ports))
