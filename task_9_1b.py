@@ -1,8 +1,9 @@
 '''
-ввести дополнительный параметр, который контролирует будет ли настроен port-security
-имя параметра 'psecurity'
-по умолчанию значение False
-Проверить работу функции на примере словаря access_dict, с генерацией конфигурации port-security и без.
+Изменить скрипт таким образом, чтобы функция возвращала не список команд, а словарь:
+
+ключи: имена интерфейсов, вида 'FastEthernet0/12'
+значения: список команд, который надо выполнить на этом интерфейсе:
+
 '''
 
 
@@ -24,18 +25,18 @@ def generate_access_config(access, portsec=False):
 					 'switchport port-security violation restrict',
 					 'switchport port-security']
 
-	access_port=[]
+	access_port={}
 	
 	for intf, vlan in access.items():
-		access_port.append('interface' + intf )
+		
 		
 		for line in access_template:
 			if line.endswith('vlan'):
-				access_port.append(line + ' ' + str(vlan))
+				access_port['interface ' + intf] = line + ' ' + str(vlan)
 			else:
-				access_port.append(line)
+				access_port['interface ' + intf] = line 
 		if portsec:
-				access_port.extend(port_security)
+				access_port['interface ' + intf] = port_security 
 	return access_port
 
 print('\n'.join(generate_access_config(access_dict, True)))
