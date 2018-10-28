@@ -46,7 +46,7 @@ def generate_trunk_config(trunk):
 	trunk_commands = []					  
 					  
 	for intf, value in trunk.items():
-		trunk_commands.append(intf)
+		trunk_commands.append('interface ' + intf )
 		for comm in trunk_template:
 			if comm.endswith('allowed vlan'):
 				trunk_commands.append(comm + ' '  + str(value).strip('[]'))
