@@ -28,8 +28,8 @@ def generate_access_config(access, portsec=False):
 	access_int={}
 	access_port=[]
 	for intf, vlan in access.items():
-		access_int['interface ' + intf]=[]
-		for line in access_template:
+		access_int['interface ' + intf]=[]	#создаем пустые списки
+		for line in access_template:		# Заполняем списки
 			if line.endswith('vlan'):
 				access_int['interface ' + intf].append(line + ' ' + str(vlan))
 			else:
@@ -43,10 +43,10 @@ Print_template = '''
 {}
 
 Применяемые к интерфейсу команды:
-{}
+{:>10}
 '''
 
-for key, value in generate_access_config(access_dict, True).items():
+for key, value in generate_access_config(access_dict, True).items(): #вывод на принт в удобном формате
 	
 	print (Print_template.format(key, '\n'.join(value)))
 	print('\n' + '-'* 35)
