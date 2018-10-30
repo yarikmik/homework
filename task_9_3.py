@@ -31,17 +31,20 @@ def get_int_vlan_map(filename):
 				sw_print.append(line)
 	vlan_int={}
 	trunk_int={}
-	
-	
+		
 	for line in sw_print:
-		if 'FastEthernet' in line:
-			
+		if 'FastEthernet' in line:				# Ищем строку с номером интерфейса
+			n, nameint = line.split()
+		elif 'access vlan' in line:				#Определяем тип порта как access
+			vlan = line.split()[-1]
+			vlan_int[nameint] = int(vlan)
+		elif 'allowed vlan' in line:			#определяем тип порта как транковый
+			vlan = line.split()[-1]				#выделяем последний элемент строки, там где номера вланов
+			vlan = vlan.split(',')				#переводим в список
+			vlan = [int(item) for item in vlan]	#переводим в int
+			trunk_int[nameint] = vlan
+
 	
+	return(print(vlan_int), print(trunk_int))
 	
-	
-	
-	
-	
-	return(sw_print)
-	
-print ('\n'.join(get_int_vlan_map('config_sw1.txt')))
+get_int_vlan_map('config_sw1.txt')
