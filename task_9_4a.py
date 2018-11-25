@@ -46,7 +46,8 @@ def get_command_dict(filename):
 	'''обработка файла, разделение на словарь команд'''
 	sw_print=[]
 	commands={}
-	
+	second_commands=[]
+	third_commands=[]
 	with open(filename) as sw:
 		for line in sw:
 			line=line.rstrip()
@@ -68,7 +69,11 @@ def get_command_dict(filename):
 		elif line.startswith('  '):
 			third_level = line
 			commands[global_com]={}
-			commands[global_com][second_level].append(third_level)
+			third_commands.append(third_level)
+			commands.update({global_com:{second_level:third_commands}})
+						
+			#commands[global_com][second_commands].append(third_level)
+			
 	return commands
 	
 print  (get_command_dict('config_r1.txt'))
