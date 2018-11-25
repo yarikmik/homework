@@ -44,19 +44,29 @@ def get_command_dict(filename):
 
 	'''обработка файла, разделение на словарь команд'''
 	sw_print=[]
+	commands={}
+	
 	with open(filename) as sw:
 		for line in sw:
-			line=line.strip()
-			line=line.strip('!') # убираем символы пробела и !
-			if line=='':		# Пропускаем пустые строки
+			line=line.rstrip()
+			line=line.rstrip(' ') # убираем символы пробела с права
+			if line=='' or '!' in line:		# Пропускаем пустые строки и строки с !
 				continue
 			elif ignore_command(line, ignore): #пропускаем команды из списка игнора
 				continue		
 			else:
 				sw_print.append(line)
-	return sw_print
 	
-print ('\n'.join(get_command_dict('config_sw1.txt')))
+	for line in sw_print:
+		if line[0] != ' ':
+			global_com = line
+			commands[global_com]=[]
+		elif line.startswith(' '):
+			commands[global_com].append(line)
+	
+	return commands
+	
+print(get_command_dict('config_sw1.txt'))
 
 
 
