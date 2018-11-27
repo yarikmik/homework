@@ -46,8 +46,8 @@ def get_command_dict(filename):
 	'''обработка файла, разделение на словарь команд'''
 	sw_print=[]
 	commands={}
-	second_commands=[]
-	third_commands=[]
+	second_commands={}
+	third_commands={}
 	with open(filename) as sw:
 		for line in sw:
 			line=line.rstrip()
@@ -63,24 +63,35 @@ def get_command_dict(filename):
 		if line[0] != ' ':
 			global_com = line
 			commands[global_com]=[]
-		elif line.startswith(' '):
+		elif line[0] == ' ' and line[1] != ' ':
 			second_level = line
 			commands[global_com].append(second_level)
-		elif line.startswith('  '):
+		elif line[0] == ' ' and line[1] == ' ':
 			third_level = line
-			commands[global_com]={}
-			third_commands.append(third_level)
-			commands.update({global_com:{second_level:third_commands}})
-						
-			#commands[global_com][second_commands].append(third_level)
+			
+			commands[global_com]={second_level:[third_level]}
+			
+			
 			
 	return commands
 	
 print  (get_command_dict('config_r1.txt'))
 
 
+Print_template = '''
 
+{}
 
+Применяемые к интерфейсу команды:
+{:>10}
+'''
+
+'''
+for key, value in get_command_dict('config_r1.txt').items(): #вывод на принт в удобном формате
+	
+	print (Print_template.format(key, '\n'.join(value)))
+	print('\n' + '-'* 35)
+'''
 
 
 
