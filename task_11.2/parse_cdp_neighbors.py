@@ -14,7 +14,7 @@ def parse_cdp_neighbors(cdp):
 	cdp_neighbors = {}
 	for s in list:
 		if s.startswith('R' or 'T' or 'B' or 'S' 
-		or 'H' or 'I' or 'r' or 'P') and s[1].isdigit:	# проверяем строку на условие
+		or 'H' or 'I' or 'r' or 'P') and (s[1].isdigit or s[2].isdigit):	# проверяем строку на условие
 			neighbors=s.split()	
 			#расспаковываем переменные по нужным параметрам соседа:
 			n_router, int, local_int, port, port_id = neighbors[0],neighbors[1], neighbors[2], neighbors[-2], neighbors[-1]
