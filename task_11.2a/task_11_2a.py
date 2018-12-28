@@ -41,11 +41,15 @@ cdp_summ.update(parse(line3))
 cdp_summ.update(parse(line4))
 
 
-cdp_all={}
+cdp_all=cdp_summ.copy()
+#в этом цикле сравниваются все элементы между собой для нахождения совпадающих пар на разных устройствах
+# что бы не задваивать связи на построенном графе:
 for key, value in cdp_summ.items():
 	for key2, value2 in cdp_summ.items():
-		if key!=value2 and value!=key2:
-			cdp_all[key]=value
+		if key==value2 and value==key2:
+			del cdp_all[key2]	#удаляются все совпадению по ключу
+			cdp_all[value2]=key2# возвращаются совпавшие и удаленные по значению, но пара ключ-значение уже заменены местами, что бы в дальнешем прогоне цикла не учавствовать в отборе
+		
 
 print(cdp_all)
 draw_topology(cdp_all)
