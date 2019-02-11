@@ -29,3 +29,28 @@ IP-адреса могут быть в формате:
 
 Для выполнения задачи можно воспользоваться функцией check_ip_addresses из задания 12.1
 '''
+
+import platform
+import subprocess
+from task_12_1 import ping, check_ip_addresses
+
+with open('ip_list.txt', 'r') as file:
+	ip_list=file.read().rstrip().split('\n') #записываем адреса из файла в список
+
+print_template='''
+Доступные адреса:
+{}
+
+Недоступные адреса:
+{}
+
+'''
+
+
+
+available, not_available = check_ip_addresses(ip_list)
+
+print(print_template.format(available, not_available))
+
+
+
