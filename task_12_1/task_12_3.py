@@ -26,6 +26,7 @@ import platform
 import subprocess
 from task_12_1 import ping, check_ip_addresses
 from task_12_2 import check_ip_availability
+from tabulate import tabulate
 
 with open('adress_list.txt', 'r') as file:
 	adress_list=file.read().rstrip().split('\n') #записываем адреса из файла в список
@@ -34,7 +35,8 @@ with open('adress_list.txt', 'r') as file:
 
 	
 def ip_table(available, not_available):
-	
+	columns=['Reachable', 'Unreachable']
+	list_of_ip=[available, not_available]
 
 
 
