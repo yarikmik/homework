@@ -21,3 +21,25 @@ Reachable    Unreachable
 То есть, до выполнения функции и после списки должны выглядеть одинаково.
 
 '''
+import ipaddress
+import platform
+import subprocess
+from task_12_1 import ping, check_ip_addresses
+from task_12_2 import check_ip_availability
+
+with open('adress_list.txt', 'r') as file:
+	adress_list=file.read().rstrip().split('\n') #записываем адреса из файла в список
+
+
+
+	
+def ip_table(available, not_available):
+	
+
+
+
+
+
+ip_list=check_ip_availability(adress_list)
+
+available, not_available = check_ip_addresses(ip_list)

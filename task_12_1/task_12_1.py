@@ -66,8 +66,6 @@ def check_ip_addresses(ip_list):
 
 if __name__ == "__main__":
 	available, not_available = check_ip_addresses(ip_list)
-
-
 	print(print_template.format(available, not_available))
 
 

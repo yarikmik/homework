@@ -39,6 +39,7 @@ with open('adress_list.txt', 'r') as file:
 
 
 def check_ip_availability(adress_list):
+	'''функция перерабатывает диапазоны адресов в конкретные адреса и выводит списком'''
 	list_ip=[] #лист, куда будут заносится значения ip
 	for string in adress_list:
 		if '-' in string:	# если в строке есть разделитель "-", значет это диапазон адресов
@@ -65,11 +66,12 @@ print_template='''
 
 '''
 
-ip_list=check_ip_availability(adress_list)
+if __name__ == "__main__":
+	ip_list=check_ip_availability(adress_list)
 
-available, not_available = check_ip_addresses(ip_list)
+	available, not_available = check_ip_addresses(ip_list)
 
-print(print_template.format(available, not_available))
+	print(print_template.format(available, not_available))
 
 
 
