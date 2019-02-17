@@ -1,9 +1,3 @@
 192.168.1.100-110
 127.0.0.1
 192.168.1.1-192.168.1.10
-
-
-start_ip = ipaddress.IPv4Address('10.0.0.1')
-end_ip = ipaddress.IPv4Address('10.0.0.5')
-for ip_int in range(int(start_ip), int(end_ip)):
-    print(ipaddress.IPv4Address(ip_int))
