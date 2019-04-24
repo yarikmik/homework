@@ -44,20 +44,39 @@ import os
 import subprocess
 import argparse
 from pprint import pprint
+from sys import argv
 
-def include_skript(filename):
-	"""функция делает выборку строк из файла по наименованной групе (filter) из регулярного выражения"""
+filename, regex = argv[1:]
+result = []
+def include_skript(regex, filename):
+	"""функция имитирует работу include cisco IOS ожидает два аргумента: имя файла и регулярное выражение"""
 	
-	
-	f = open(filename, 'r')
-	file = f.read()
-	f.close()
+	with open(filename) as f:
+		for line in f:
+			match = re.search(regex, line)
+			if match:
+				result.append(line.strip())
 
-	#регулярное выражение:
+	return result
+
+for string in include_skript(regex, filename):
+	print (string)
+
+#pprint (include_skript(regex, filename))
+
+
+
+'''
 	regex=re.finditer('(?P<int>\S+) +\S+ +\w+ +'
 					'(?P<method>\w+) +'
 					'(?P<status_protocol>(up|down|administratively down) +(up|down))', file)	
 	result = [qwe.groupdict() for qwe in regex]
 	
-	return result
-pprint (include_skript('sh_ip_int_br.txt'))
+'''
+
+
+
+
+
+
+
