@@ -13,4 +13,5 @@
 '''
 
 regex = 'Fa\S+(0/1|3)'
-print regex
+regex = '"' + regex + '"'
+print (regex)
