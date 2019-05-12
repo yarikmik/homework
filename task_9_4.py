@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 '''
 ДСоздать функцию, которая обрабатывает конфигурационный файл коммутатора и возвращает словарь:
 
@@ -23,6 +24,7 @@ def ignore_command(command, ignore):
     
     return any(word in command for word in ignore)
 '''
+
 
 ignore = ['duplex', 'alias', 'Current configuration']
 
